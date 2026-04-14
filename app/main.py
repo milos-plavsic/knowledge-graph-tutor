@@ -1,9 +1,6 @@
 import os
 
-
-def explain_with_graph(topic: str) -> str:
-    path = ["Neural Networks", "Chain Rule", "Backpropagation"]
-    return f"Topic: {topic} | reasoning path: {' -> '.join(path)}"
+from app.graph_path import explain_with_graph
 
 
 def main() -> None:

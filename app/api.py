@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 
-from app.main import explain_with_graph
+from app.graph_path import explain_with_graph
 
 app = FastAPI(title="Knowledge Graph Tutor", version="0.1.0")
 

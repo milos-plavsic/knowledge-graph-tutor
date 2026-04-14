@@ -5,6 +5,10 @@
 
 An interactive tutor that combines a knowledge graph with LLM guidance to produce step-by-step, path-based explanations and adaptive hints.
 
+## Real-world data (education sector)
+
+The demo uses a small **STEM prerequisite graph** bundled as `data/stem_prereqs.json` (illustrative secondary progression: algebra → functions → kinematics → energy/momentum). For curriculum context, see [Next Generation Science Standards](https://www.nextgenscience.org/) and typical secondary math/science scope sequences used in many US districts (graph is a simplified teaching aid, not student-level records).
+
 ## Quickstart
 
 ```bash
