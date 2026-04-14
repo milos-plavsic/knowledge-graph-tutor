@@ -1,4 +1,6 @@
 langgraph
 networkx
-sentence-transformers
 python-dotenv
+pytest
+fastapi
+uvicorn[standard]

@@ -1,6 +1,37 @@
 # 03 - Knowledge Graph Reasoning Tutor
 
+[![CI](https://github.com/milos-plavsic/knowledge-graph-tutor/actions/workflows/ci.yml/badge.svg)](https://github.com/milos-plavsic/knowledge-graph-tutor/actions/workflows/ci.yml)
+[![Python3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
+
 An interactive tutor that combines a knowledge graph with LLM guidance to produce step-by-step, path-based explanations and adaptive hints.
+
+## Quickstart
+
+```bash
+make install
+make run
+make api
+make test
+```
+
+Docker API: `make docker-api`.
+
+## API
+
+- OpenAPI docs: `http://127.0.0.1:8000/docs`
+- Health: `GET /health`
+- Explain: `POST /v1/explain` with JSON body `{"topic":"..."}`
+
+## Architecture
+
+```mermaid
+flowchart LR
+  Q[Student query] --> I[Intent]
+  I --> S[Subgraph retrieval]
+  S --> P[Path ranker]
+  P --> T[Tutor explainer]
+  T --> H[Adaptive hints]
+```
 
 ## Why This Project Stands Out
 
