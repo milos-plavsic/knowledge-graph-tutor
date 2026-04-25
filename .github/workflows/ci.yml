@@ -17,4 +17,4 @@ jobs:
       - name: Run tests
         run: python -m pytest -q
       - name: Run CLI starter
-        run: python app/main.py
+        run: python -m app.main
