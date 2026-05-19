@@ -12,10 +12,12 @@ GRAPH_NOTE = (
 
 
 def project_root() -> Path:
+    """Execute the project root routine."""
     return Path(__file__).resolve().parent.parent
 
 
 def load_prereq_graph() -> nx.DiGraph:
+    """Execute the load prereq graph routine."""
     path = project_root() / "data" / "stem_prereqs.json"
     payload = json.loads(path.read_text(encoding="utf-8"))
     g = nx.DiGraph()
@@ -27,6 +29,7 @@ def load_prereq_graph() -> nx.DiGraph:
 
 
 def topic_to_target(topic: str) -> str:
+    """Execute the topic to target routine."""
     t = topic.lower()
     if any(k in t for k in ("momentum", "collision")):
         return "momentum"
@@ -44,6 +47,7 @@ def topic_to_target(topic: str) -> str:
 
 
 def explain_with_graph(topic: str) -> str:
+    """Execute the explain with graph routine."""
     g = load_prereq_graph()
     target = topic_to_target(topic)
     if target not in g:

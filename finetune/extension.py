@@ -1,7 +1,12 @@
 """Fine-tuning ideas for graph+tutor systems (graph weights, retrieval, or LLM head)."""
 
+from ml_core import configure_logging
+
+logger = configure_logging(__name__)
+
 
 def describe_graph_finetune_playbook() -> dict:
+    """Execute the describe graph finetune playbook routine."""
     return {
         "graph_side": [
             "Refine edge weights from student outcome logs (personalized prerequisite strength).",
@@ -15,9 +20,10 @@ def describe_graph_finetune_playbook() -> dict:
 
 
 def main() -> None:
+    """Execute the main routine."""
     import json
 
-    print(json.dumps(describe_graph_finetune_playbook(), indent=2))
+    logger.info(json.dumps(describe_graph_finetune_playbook(), indent=2))
 
 
 if __name__ == "__main__":
