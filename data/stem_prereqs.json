@@ -1,0 +1,23 @@
+{
+  "source": "Illustrative secondary STEM prerequisite graph for demos (not student-level data). Conceptually aligned with typical US secondary progression in physical sciences and algebra (see README links).",
+  "nodes": [
+    {"id": "fractions", "label": "Rational numbers / fractions"},
+    {"id": "algebra_linear", "label": "Linear equations & graphs"},
+    {"id": "geometry_right_tri", "label": "Right triangles & similarity"},
+    {"id": "functions", "label": "Functions & rates of change"},
+    {"id": "vectors_intro", "label": "Intro vectors & components"},
+    {"id": "kinematics", "label": "1D kinematics (position/velocity)"},
+    {"id": "energy", "label": "Work & energy basics"},
+    {"id": "momentum", "label": "Momentum & collisions"}
+  ],
+  "edges": [
+    {"from": "fractions", "to": "algebra_linear"},
+    {"from": "algebra_linear", "to": "geometry_right_tri"},
+    {"from": "algebra_linear", "to": "functions"},
+    {"from": "geometry_right_tri", "to": "vectors_intro"},
+    {"from": "functions", "to": "kinematics"},
+    {"from": "vectors_intro", "to": "kinematics"},
+    {"from": "kinematics", "to": "energy"},
+    {"from": "kinematics", "to": "momentum"}
+  ]
+}

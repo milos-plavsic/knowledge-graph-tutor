@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Knowledge Graph Tutor</title>
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<style>
+body{font-family:system-ui,sans-serif;max-width:1100px;margin:2rem auto;padding:0 1rem}
+#graph{height:480px;border:1px solid #d0d7de;border-radius:8px;background:#fafbfc}
+.controls{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;margin:1rem 0}
+pre#out{max-height:200px;overflow:auto;background:#f6f8fa;padding:1rem;border-radius:8px}
+</style>
+</head>
+<body>
+<h1>Knowledge Graph Tutor</h1>
+<p>Explore prerequisites and learning paths. API: <a href="/docs">/docs</a></p>
+<div class="controls">
+  <label>Topic <input id="topic" value="gradient"/></label>
+  <button id="load" type="button">Explain</button>
+  <button id="export" type="button">Load graph</button>
+</div>
+<div id="graph"></div>
+<pre id="out"></pre>
+<script>
+const b=location.origin.replace(/\/ui\/?$/,'');
+let network=null;
+function renderGraph(payload){
+  const nodes=new vis.DataSet((payload.nodes||[]).map(n=>({id:n.id,label:n.name||n.id,title:n.name||n.id})));
+  const edges=new vis.DataSet((payload.edges||[]).map((e,i)=>({id:i,from:e.source||e.from,to:e.target||e.to,arrows:'to'})));
+  const container=document.getElementById('graph');
+  if(network) network.destroy();
+  network=new vis.Network(container,{nodes,edges},{
+    physics:{barnesHut:{gravitationalConstant:-3500}},
+    interaction:{hover:true},
+    edges:{smooth:{type:'continuous'}}
+  });
+}
+document.getElementById('load').onclick=async()=>{
+  const t=document.getElementById('topic').value;
+  const r=await fetch(b+`/v1/explain/${encodeURIComponent(t)}`);
+  document.getElementById('out').textContent=JSON.stringify(await r.json(),null,2);
+};
+document.getElementById('export').onclick=async()=>{
+  const r=await fetch(b+'/v1/graph/export');
+  const j=await r.json();
+  document.getElementById('out').textContent=JSON.stringify(j,null,2);
+  renderGraph(j);
+};
+</script>
+</body>
+</html>
