@@ -24,4 +24,4 @@ fastapi==0.110.0
 uvicorn[standard]==0.29.0
 
 # observability
-prometheus-client>=0.20.0
+prometheus-client>=0.25.0
